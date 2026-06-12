@@ -233,6 +233,41 @@ body{margin:0;height:100%;min-height:100vh;min-height:-webkit-fill-available;bac
 @media (orientation:portrait) and (max-width:760px){
   #rotateHint.armed{display:flex;}
 }
+
+/* ---------------- LANDSCAPE PHONE: board-first overlay mode ---------------- */
+@media (orientation:landscape) and (max-height:560px){
+  #app{display:block;position:relative;}
+  #matwrap{position:absolute;inset:0;}
+  #oppBar{position:absolute;top:2px;left:50%;transform:translateX(-50%);height:24px;width:auto;
+    background:rgba(4,12,22,.72);border:1px solid var(--line2);border-radius:9px;padding:2px 10px;z-index:7;gap:6px;}
+  #oppBar .oface{width:18px;height:18px;}
+  #oppBar .oface svg{width:11px;height:11px;}
+  #oppBar .onm{font-size:7px;}
+  #oppHand{display:none;}
+  #oppPool .res{width:8px;height:8px;}
+  #oppCounts{font-size:7px!important;padding-right:0!important;}
+  #meStrip{position:absolute;left:0;right:0;bottom:0;height:74px;z-index:8;
+    background:linear-gradient(transparent,rgba(2,7,13,.88) 45%);padding:0 6px 2px 6px;gap:4px;}
+  .avatar{width:38px;}
+  .face{display:none;}
+  .scporb{margin-top:0;min-width:30px;height:24px;font-size:12px;}
+  #pool{max-width:54px;gap:2px;}
+  .res{width:11px;height:11px;}
+  #resCount{font-size:5.5px!important;}
+  #endBtn{width:52px;height:52px;font-size:7px;margin-bottom:3px;}
+  #hand .card{bottom:-8px;}
+  #zoom{bottom:80px;}
+  #zoom img{width:110px;}
+  #zoomtxt{width:170px;font-size:9px;}
+  #toast{bottom:80px;}
+  #discardBtn{bottom:80px;right:64px;}
+  #logToggle{bottom:80px;}
+  #coachPanel{top:30px;max-height:62vh;}
+  #coachBtn{top:2px;right:6px;}
+  #help{top:2px;}
+  #restartBtn{top:2px;}
+  #rotateHint.armed{display:none;}
+}
 </style>
 </head>
 <body>
@@ -1002,7 +1037,8 @@ Respond ONLY with raw JSON, no markdown fences, exactly: {"threat":"<=35 words: 
     const h=UI.el('hand');h.innerHTML='';
     const N=G.me.hand.length, span=Math.min(40,N*6.5);
     const hw=h.clientWidth||600;
-    const cw=hw<420?64:hw<560?76:100;
+    const short=(window.innerHeight||600)<560;
+    const cw=short?58:(hw<420?64:hw<560?76:100);
     const spacing=N>1?Math.min(hw<560?44:52, Math.max(22,(hw-cw-14)/(N-1))):0;
     G.me.hand.forEach((c,i)=>{
       const playable=myPlayable(c);
