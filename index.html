@@ -18,18 +18,27 @@
 <meta name="theme-color" content="#040c16"/>
 <link rel="apple-touch-icon" href="icon-192.png"/>
 <link rel="icon" href="icon-192.png"/>
-<meta http-equiv="refresh" content="0; url=game.html"/>
 <style>
 html,body{margin:0;height:100%;background:#040c16;color:#dfeaf3;font-family:system-ui,sans-serif;
 display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;text-align:center;}
 a{color:#3fc6e8;font-weight:800;text-decoration:none;border:1.5px solid #3fc6e8;border-radius:10px;padding:10px 26px;}
 .t{letter-spacing:3px;font-weight:900;color:#e8c35a;font-size:13px;}
+.bar{width:200px;height:4px;background:#0d2235;border-radius:3px;overflow:hidden;}
+.bar i{display:block;height:100%;width:35%;background:#3fc6e8;border-radius:3px;animation:sl 1.1s ease-in-out infinite;}
+@keyframes sl{0%{margin-left:-35%}100%{margin-left:100%}}
 </style>
-<script>location.replace('game.html');</script>
 </head>
 <body>
 <div class="t">CYBER REALM — WATER SECTOR EDITION</div>
 <div style="color:#7795ad;font-size:13px;">Loading the demo…</div>
-<a href="game.html">PLAY NOW</a>
+<div class="bar"><i></i></div>
+<noscript><a href="game.html">PLAY NOW</a></noscript>
+<script>
+fetch('game.html').then(r=>{if(!r.ok)throw 0;return r.text();}).then(html=>{
+  document.open(); document.write(html); document.close();
+}).catch(()=>{
+  document.body.innerHTML='<div class="t">CYBER REALM — WATER SECTOR EDITION</div><a href="game.html">PLAY NOW</a>';
+});
+</script>
 </body>
 </html>
