@@ -233,12 +233,12 @@ body{margin:0;height:100%;min-height:100vh;min-height:-webkit-fill-available;bac
 }
 @media (orientation:portrait) and (max-width:760px){
   #rotateHint.armed{display:flex;}
-  #endBtn{position:fixed;right:8px;bottom:calc(122px + env(safe-area-inset-bottom,0px));z-index:96;
-    width:58px;height:58px;box-shadow:0 6px 18px #000c;}
+  #endBtn{position:fixed;right:6px;bottom:calc(192px + env(safe-area-inset-bottom,0px));z-index:96;
+    width:76px;height:76px;font-size:10px;box-shadow:0 8px 22px #000d, 0 0 14px #3fc6e833;}
   #meStrip{padding-right:8px;}
   #resCount{white-space:normal!important;max-width:70px;line-height:1.3;}
-  #discardBtn{right:74px;}
-  #logToggle{right:74px;}
+  #discardBtn{right:8px;}
+  #logToggle{right:8px;}
 }
 
 /* ---------------- LANDSCAPE PHONE: board-first overlay mode ---------------- */
@@ -261,7 +261,8 @@ body{margin:0;height:100%;min-height:100vh;min-height:-webkit-fill-available;bac
   #pool{max-width:54px;gap:2px;}
   .res{width:11px;height:11px;}
   #resCount{font-size:5.5px!important;}
-  #endBtn{width:52px;height:52px;font-size:7px;margin-bottom:3px;}
+  #endBtn{position:fixed;right:6px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:96;
+    width:66px;height:66px;font-size:9px;margin:0;box-shadow:0 8px 22px #000d, 0 0 14px #3fc6e833;}
   #hand .card{bottom:-8px;}
   #zoom{bottom:80px;}
   #zoom img{width:110px;}
