@@ -19,4 +19,3 @@ Get the tabletop game: https://cyberrealmtcg.com
 
 © 2026 The Cat in the Black Hat — Juan Ford. All rights reserved.
 The demo is provided for educational play; card designs and artwork may not be reused.
-

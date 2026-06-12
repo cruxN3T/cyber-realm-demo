@@ -15,6 +15,13 @@
 <meta name="twitter:title" content="Cyber Realm — Water Sector Edition · Free Playable Demo"/>
 <meta name="twitter:image" content="https://play.cyberrealmtcg.com/preview.jpg"/>
 <title>Cyber Realm — Water Sector Edition</title>
+<meta name="theme-color" content="#040c16"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Cyber Realm"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="icon-192.png"/>
 <style>
 :root{
   --gold:#e8c35a; --gold2:#f7e09a; --aqua:#3fc6e8; --aqua2:#7fdcf2;
@@ -171,6 +178,55 @@ html,body{margin:0;height:100%;background:#02070d;color:var(--text);
 #coachBody .tag{font-size:8.5px;letter-spacing:2px;color:#3fc68a;font-weight:900;}
 .spin{display:inline-block;animation:sp 1s linear infinite;}
 @keyframes sp{to{transform:rotate(360deg)}}
+
+#discardBtn{position:absolute;bottom:170px;right:130px;z-index:96;background:#3a1410;border:1.5px solid var(--red);
+  color:#ffb3ab;border-radius:9px;padding:8px 14px;font-weight:800;font-size:11px;display:none;cursor:pointer;}
+/* ---------------- MOBILE ---------------- */
+#rotateHint{display:none;position:fixed;inset:0;z-index:400;background:#03090fee;
+  flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:30px;}
+#rotateHint .ph{font-size:52px;animation:rot 2s ease-in-out infinite;}
+@keyframes rot{0%,20%{transform:rotate(0)}60%,100%{transform:rotate(90deg)}}
+@media (max-width:760px), (max-height:540px){
+  #oppBar{height:32px;padding:2px 6px;gap:6px;}
+  #oppBar .oface{width:24px;height:24px;font-size:11px;}
+  #oppBar .oface svg{width:13px;height:13px;}
+  #oppBar .onm{font-size:8px;}
+  #oppHand{padding-left:18px;}
+  .cardback{width:26px;height:36px;margin-left:-18px;border-radius:4px;}
+  #oppCounts{padding-right:6px!important;}
+  #meStrip{height:112px;gap:5px;padding:0 4px 2px 4px;}
+  .avatar{width:46px;}
+  .face{width:34px;height:34px;font-size:14px;border-width:2px;}
+  .scporb{min-width:28px;height:22px;font-size:11px;margin-top:-7px;}
+  .avatar .nm{display:none;}
+  #pool{max-width:64px;gap:2px;}
+  .res{width:13px;height:13px;font-size:6px;}
+  #resCount{font-size:6px!important;}
+  #endBtn{width:62px;height:62px;font-size:8px;margin-bottom:4px;}
+  #hand .card{bottom:-16px;}
+  #log{display:none;}
+  #zoom{left:50%;transform:translateX(-50%);bottom:118px;width:auto;display:none;}
+  #zoom img{width:128px;}
+  #zoomtxt{width:190px;font-size:9.5px;padding:6px;}
+  #toast{bottom:118px;font-size:10px;padding:5px 10px;max-width:86vw;}
+  #discardBtn{bottom:118px;right:72px;padding:6px 9px;font-size:9px;}
+  #coachBtn{top:26px;font-size:8.5px;padding:2px 6px!important;}
+  #help{font-size:8px;padding:2px 6px;}
+  #restartBtn{right:88px!important;font-size:8px!important;padding:2px 6px!important;}
+  #coachPanel{width:min(88vw,260px);top:48px;}
+  #turnBanner{font-size:16px;letter-spacing:4px;}
+  #banner{font-size:17px;letter-spacing:2px;}
+  #modal .mtitle{font-size:14px;}
+  .mopt{width:96px;padding:6px;}
+  .mopt img{width:72px;}
+  .mopt .ol{font-size:9px;}
+  .mopt .od{font-size:7.5px;}
+  #helpPanel{inset:2vh 3vw;padding:12px 14px;font-size:11px;}
+  #mopts{gap:8px;}
+}
+@media (orientation:portrait) and (max-width:760px){
+  #rotateHint.armed{display:flex;}
+}
 </style>
 </head>
 <body>
@@ -193,6 +249,11 @@ html,body{margin:0;height:100%;background:#02070d;color:var(--text);
 <div id="modal"><div class="mtitle" id="mt"></div><div class="msub" id="ms"></div><div id="mopts"></div></div>
 <div id="banner"></div><div id="turnBanner"></div>
 <div id="help" onclick="UI.toggleHelp()">? HOW TO PLAY</div>
+<div id="logToggle" onclick="UI.toggleLog()" style="display:none;position:absolute;right:8px;bottom:120px;z-index:96;font-size:11px;cursor:pointer;border:1px solid var(--line2);padding:3px 7px;border-radius:7px;background:#04101dcc;">📜</div>
+<div id="rotateHint" class="armed"><div class="ph">📱</div>
+  <div style="font-weight:900;font-size:16px;letter-spacing:1px;">ROTATE YOUR DEVICE</div>
+  <div style="color:var(--dim);font-size:12px;max-width:280px;">Cyber Realm plays on the full mat — landscape gives you the whole board.</div>
+  <button onclick="document.getElementById('rotateHint').classList.remove('armed')" style="background:var(--gold);border:none;border-radius:8px;padding:8px 18px;font-weight:800;cursor:pointer;font-size:11px;">CONTINUE IN PORTRAIT</button></div>
 <div id="restartBtn" onclick="UI.restart()" style="position:absolute;right:110px;top:6px;z-index:95;font-size:9.5px;color:var(--dim);cursor:pointer;border:1px solid var(--line2);padding:3px 9px;border-radius:7px;background:#04101dcc;">↻ RESTART</div>
 <button id="coachBtn" onclick="UI.coach()">🎓 COACH</button>
 <div id="coachPanel">
@@ -659,7 +720,7 @@ Respond ONLY with JSON, no markdown fences, exactly: {"advice":"1-2 concrete pla
     if(UI._seen[key]||!LESSONS[key])return; UI._seen[key]=1;
     const [t,body]=LESSONS[key];
     const e=document.createElement('div');
-    e.style.cssText='position:absolute;top:54px;left:50%;transform:translateX(-50%);z-index:118;background:#0d1f12ee;border:1.5px solid var(--gold);border-radius:11px;padding:10px 16px;max-width:430px;box-shadow:0 12px 36px #000;';
+    e.style.cssText='position:absolute;top:54px;left:50%;transform:translateX(-50%);z-index:118;background:#0d1f12ee;border:1.5px solid var(--gold);border-radius:11px;padding:10px 16px;max-width:min(430px,88vw);box-shadow:0 12px 36px #000;';
     e.innerHTML=`<div style="color:var(--gold2);font-weight:900;font-size:11px;letter-spacing:1px;">${t} · CYBER LESSON</div>
       <div style="font-size:11px;line-height:1.5;color:#d5e8da;margin-top:3px;">${body}</div>`;
     document.body.appendChild(e);
@@ -808,7 +869,10 @@ Respond ONLY with raw JSON, no markdown fences, exactly: {"threat":"<=35 words: 
     // customer impact state
     const cs=document.createElement('div');cs.id='custState';
     cs.style.cssText='left:65.4%;top:49.5%;width:7.6%;';cs.textContent='PROTECTED';m.appendChild(cs);
-    UI.fitMat(); window.addEventListener('resize',UI.fitMat);
+    UI.fitMat();
+    window.addEventListener('resize',()=>{UI.fitMat();UI.renderAll();});
+    window.addEventListener('orientationchange',()=>setTimeout(()=>{UI.fitMat();UI.renderAll();},250));
+    if(window.matchMedia('(max-width:760px)').matches){const lt=UI.el('logToggle');if(lt)lt.style.display='block';}
   },
   fitMat(){
     const w=UI.el('matwrap'), m=UI.el('mat');
@@ -894,8 +958,7 @@ Respond ONLY with raw JSON, no markdown fences, exactly: {"threat":"<=35 words: 
     G.sel=c; UI.zoom(c); UI.discardBtn(true); UI.renderAll();},
   discardBtn(show){let b=UI.el('discardBtn');
     if(!b){b=document.createElement('button');b.id='discardBtn';
-      b.style.cssText='position:absolute;bottom:170px;right:130px;z-index:96;background:#3a1410;border:1.5px solid var(--red);color:#ffb3ab;border-radius:9px;padding:8px 14px;font-weight:800;font-size:11px;display:none;cursor:pointer;';
-      b.textContent='🗑 DISCARD CARD';
+      b.textContent='🗑 DISCARD';
       b.onclick=()=>{if(!G.sel)return;
         log(`<span class="b">You discard ${G.sel.n}</span>`);
         G.me.hand.splice(G.me.hand.indexOf(G.sel),1);
@@ -932,13 +995,17 @@ Respond ONLY with raw JSON, no markdown fences, exactly: {"threat":"<=35 words: 
     // hand fan
     const h=UI.el('hand');h.innerHTML='';
     const N=G.me.hand.length, span=Math.min(40,N*6.5);
+    const hw=h.clientWidth||600;
+    const cw=hw<420?64:hw<560?76:100;
+    const spacing=N>1?Math.min(hw<560?44:52, Math.max(22,(hw-cw-14)/(N-1))):0;
     G.me.hand.forEach((c,i)=>{
       const playable=myPlayable(c);
       const el=UI.cardEl(c,(playable?'playable':'')+(G.sel===c?' selected':''),()=>UI.handTap(c));
       const rot=N>1?(-span/2+span*i/(N-1)):0;
+      el.style.width=cw+'px'; el.style.height=Math.round(cw*1.4)+'px';
       el.style.setProperty('--rot',rot+'deg');
       el.style.setProperty('--lift',(Math.abs(rot)*1.1)+'px');
-      el.style.left=`calc(50% + ${(i-(N-1)/2)*52}px)`;
+      el.style.left=`calc(50% + ${((i-(N-1)/2)*spacing).toFixed(1)}px)`;
       el.style.zIndex=10+i;
       h.appendChild(el);});
     const oh=UI.el('oppHand');oh.innerHTML='';
@@ -1014,6 +1081,7 @@ Respond ONLY with raw JSON, no markdown fences, exactly: {"threat":"<=35 words: 
         G.me.hand.splice(G.me.hand.indexOf(c),1);UI.closeModal();
         if(G.me.hand.length>7)UI.discardDown();
         else {UI.renderAll();G.sel=null;UI.setPhase(4);aiTurn();}}})),false);},
+  toggleLog(){const L=UI.el('log');L.style.display=(L.style.display==='block')?'none':'block';},
   toggleHelp(){const p=UI.el('helpPanel');p.style.display=p.style.display==='block'?'none':'block';},
 };
 window.UI=UI;
@@ -1028,6 +1096,7 @@ playCard=async function(c,extra){ const had=G.me.hand.includes(c);
   G.sel=null; UI.renderAll(); };
 const _offer=offerReaction;
 offerReaction=async function(atk){const r=await _offer(atk); if(r&&r.fn)G.nistSlots[r.fn]=r; UI.renderAll(); return r;};
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('sw.js').catch(()=>{});}catch(e){}}
 UI.buildMat();
 setup();
 UI.el('helpPanel').style.display='block';

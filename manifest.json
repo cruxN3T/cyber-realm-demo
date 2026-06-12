@@ -1,0 +1,23 @@
+{
+ "name": "Cyber Realm \u2014 Water Sector Edition",
+ "short_name": "Cyber Realm",
+ "description": "Defend a small water utility against the cyber kill chain. The cybersecurity card game, playable free.",
+ "start_url": "./",
+ "display": "fullscreen",
+ "orientation": "landscape",
+ "background_color": "#040c16",
+ "theme_color": "#040c16",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  }
+ ]
+}
